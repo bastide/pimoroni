@@ -14,7 +14,8 @@ async def scan_ble_proches():
             # des balises à surveiller
             if adv_data.rssi > RSSI_THRESHOLD:
                 # Ajouter la balise à la liste des balises proches
-                proches.append(f"Adresse: {device.address}, RSSI: {adv_data.rssi} dBm, Nom: {device.name}, données: {adv_data}")
+                
+                proches.append(f"Adresse: {device.address}, RSSI: {adv_data.rssi} dBm, Nom: {device.name}")
         return proches
     except Exception as e:
         print(f"Erreur lors du scan : {e}")
@@ -24,8 +25,9 @@ async def main():
     print("Démarrage du scan des balises proches...")
     while True:
         proches = await scan_ble_proches()
+        proches.sort(key=lambda x: x.split(", Nom: ")[-1])
         if proches:
-            print("\nBalises proches détectées :")
+            print(f"\nNombre de balises détectées : {len(proches)}")
             for balise in proches:
                 print(balise)
         else:
