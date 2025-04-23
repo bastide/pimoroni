@@ -1,3 +1,6 @@
+import MQTTLogger
+
+
 # Create an MQTT logger instance
 mqtt_logger = MQTTLogger(
     broker_host="localhost",
