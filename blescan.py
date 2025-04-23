@@ -5,8 +5,6 @@ import json
 
 # Seuil RSSI pour considérer une balise comme "proche" (en dBm)
 RSSI_THRESHOLD = -70
-# Liste des noms de balises à surveiller
-NOMS_BALISES = ["CF:1D:EB:92:AF:89", "C1:96:B3:D2:D9:0C", "5C-6B-64-D8-0C-D4"]
 
 async def scan_ble_proches(balises):
     try:
@@ -18,7 +16,6 @@ async def scan_ble_proches(balises):
             # des balises à surveiller
             if adv_data.rssi > RSSI_THRESHOLD and balises.get(device.address) is not None:
                 # Ajouter la balise à la liste des balises proches
-                
                 proches.append(f"Adresse: {device.address}, RSSI: {adv_data.rssi} dBm, Nom: {balises.get(device.address)}")
         return proches
     except Exception as e:
@@ -31,8 +28,8 @@ async def main():
     print("Démarrage du scan des balises proches...")
     while True:
         proches = await scan_ble_proches(balises)
-        proches.sort(key=lambda x: x.split(", Nom: ")[-1])
         if proches:
+            proches.sort(key=lambda x: x.split(", Nom: ")[-1])
             print(f"\nNombre de balises détectées : {len(proches)}")
             for balise in proches:
                 print(balise)

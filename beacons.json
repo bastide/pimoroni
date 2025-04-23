@@ -1,4 +1,6 @@
 {
-    "CF:1D:EB:92:AF:89" : "Bureau", 
-    "C1:96:B3:D2:D9:0C" : "Cuisine"
+    "CF:1D:EB:92:AF:89" : "Infirmière 1", 
+    "C1:96:B3:D2:D9:0C" : "Infirmière 2",
+    "D8:E3:76:36:1C:D4" : "Aide Soignante 1",
+    "C7:2C:EA:C2:08:78" : "Aide Soignante 2"
 }
